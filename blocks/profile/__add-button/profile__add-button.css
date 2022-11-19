@@ -10,7 +10,7 @@
   transition: all .5s ease;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .profile__add-button {
     width: 282px;
   }

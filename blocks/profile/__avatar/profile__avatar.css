@@ -7,7 +7,7 @@
   display: block;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .profile__avatar {
     margin-right: 0;
   }

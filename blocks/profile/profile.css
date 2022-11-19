@@ -14,7 +14,7 @@
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .profile {
     flex-direction: column;
     text-align: center;
