@@ -47,10 +47,10 @@ const createCard = (card) => {
   });
 
   cardLink.addEventListener('click', () => {
-    image.src = card.link
-    image.alt = card.name
-    imageName.textContent = card.name
-    openPopup(popupPhoto)
+    image.src = card.link;
+    image.alt = card.name;
+    imageName.textContent = card.name;
+    openPopup(popupPhoto);
   })
 
   return newCard;
