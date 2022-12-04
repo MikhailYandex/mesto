@@ -28,65 +28,56 @@
       <button type="button" class="profile__add-button"></button>
     </section>
     <section class="elements">
-      <div class="element">
-        <img src="./images/elements/lighthouse.jpg" alt="Маяк на берегу моря" class="element__photo">
-        <div class="element__group">
-          <h2 class="element__text">Маяк на причале</h2>
-          <button type="button" class="element__like-button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/elements/motorbike.jpg" alt="Езда на мотоцикле" class="element__photo">
-        <div class="element__group">
-          <h2 class="element__text">Езда на мотоцикле</h2>
-          <button type="button" class="element__like-button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/elements/waterfall.jpg" alt="Водопад" class="element__photo">
-        <div class="element__group">
-          <h2 class="element__text">Водопад</h2>
-          <button type="button" class="element__like-button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/elements/bird.jpg" alt="Пение птицы" class="element__photo">
-        <div class="element__group">
-          <h2 class="element__text">Птица</h2>
-          <button type="button" class="element__like-button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/elements/church.jpg" alt="Церковь" class="element__photo">
-        <div class="element__group">
-          <h2 class="element__text">Церковь</h2>
-          <button type="button" class="element__like-button"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="./images/elements/airplane.jpg" alt="Самолет на небе" class="element__photo">
-        <div class="element__group">
-          <h2 class="element__text">Самолет</h2>
-          <button type="button" class="element__like-button"></button>
-        </div>
-      </div>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_edit">
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
-        <input type="text" class="popup__input popup__input_first" value="Жак-Ив Кусто" placeholder="Имя" required>
-        <input type="text" class="popup__input popup__input_second" value="Исследователь океана" placeholder="О себе" required>
+      <form class="popup__form popup__form_edit">
+        <input type="text" class="popup__input popup__input_name" placeholder="Имя" required>
+        <input type="text" class="popup__input popup__input_text" placeholder="О себе" required>
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
     </div>
   </div>
+
+  <div class="popup popup_type_add">
+    <div class="popup__container">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_add">
+        <input type="text" class="popup__input popup__input_name" placeholder="Название" required>
+        <input type="text" class="popup__input popup__input_link" placeholder="Ссылка на картинку" required>
+        <button type="submit" class="popup__button">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_image">
+    <div class="popup__container-image">
+      <button class="popup__close" type="button"></button>
+      <figure class="popup__figure">
+        <img src="#" class="popup__image" alt="картинка"/>
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <template id="element-template">
+    <article class="element">
+      <button class="element__delete-icon" type="button"></button>
+      <img src="#" class="element__photo">
+      <div class="element__group">
+        <h2 class="element__text"></h2>
+        <button type="button" class="element__like"></button>
+      </div>
+    </article>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>

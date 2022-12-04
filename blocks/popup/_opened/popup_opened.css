@@ -1,3 +1,5 @@
 .popup_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transform: perspective(600px) translateY(0%) rotateX(0deg);
 }

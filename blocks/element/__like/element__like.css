@@ -1,4 +1,4 @@
-.element__like-button {
+.element__like {
   width: 22px;
   height: 19px;
   background: url('../../../images/svg/heart.svg') center no-repeat;
@@ -7,10 +7,6 @@
   transition: all .5s ease;
 }
 
-.element__like-button:hover {
+.element__like:hover {
   opacity: .6;
-}
-
-.element__like-button:focus {
-  background: url('../../../images/svg/blackheart.svg') center no-repeat;
 }
