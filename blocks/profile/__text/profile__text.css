@@ -7,7 +7,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 300px;
+  width: 300px;
 }
 
 @media (max-width: 767px) {
@@ -15,6 +15,6 @@
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 36px;
-    max-width: 200px;
+    width: 200px;
   }
 }

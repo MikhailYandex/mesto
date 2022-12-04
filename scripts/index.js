@@ -1,14 +1,5 @@
-const initialCards = [
-  {name: 'Самолёт', link: './images/elements/airplane.jpg'},
-  {name: 'Церковь', link: './images/elements/church.jpg'},
-  {name: 'Птица', link: './images/elements/bird.jpg'},
-  {name: 'Водопад', link: './images/elements/waterfall.jpg'},
-  {name: 'Езда на мотоцикле', link: './images/elements/motorbike.jpg'},
-  {name: 'Маяк на причале', link: './images/elements/lighthouse.jpg'}
-];
-
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
+const buttonOpenEditProfileForm = document.querySelector('.profile__edit-button');
+const buttonOpenAddCardForm = document.querySelector('.profile__add-button');
 const popup = document.querySelectorAll('.popup');
 
 const popupEdit = document.querySelector('.popup_type_edit');
@@ -20,13 +11,13 @@ const imageName = document.querySelector('.popup__caption');
 
 const closeButtons = document.querySelectorAll('.popup__close');
 
-const editForm = document.querySelector('.popup__form_edit');
-const nameEditInput = editForm.querySelector('.popup__input_name');
-const textInput = editForm.querySelector('.popup__input_text');
+const formEditProfile = document.querySelector('.popup__form_edit');
+const nameEditInput = formEditProfile.querySelector('.popup__input_name');
+const textInput = formEditProfile.querySelector('.popup__input_text');
 
-const addForm = document.querySelector('.popup__form_add');
-const nameAddInput = addForm.querySelector('.popup__input_name');
-const linkInput = addForm.querySelector('.popup__input_link');
+const formAddCard = document.querySelector('.popup__form_add');
+const nameAddInput = formAddCard.querySelector('.popup__input_name');
+const linkInput = formAddCard.querySelector('.popup__input_link');
 
 const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
@@ -79,22 +70,19 @@ function editFormSubmitHandler(e) {
   e.preventDefault();
   profileName.textContent = nameEditInput.value;
   profileText.textContent = textInput.value;
+  e.target.reset();
   closePopup(popupEdit);
 }
 
 function addFormSubmitHandler(e) {
   e.preventDefault();
-  renderCard({ name: nameAddInput.value, link: linkInput.value })
-  e.target.reset()
-  closePopup(popupAdd)
+  renderCard({ name: nameAddInput.value, link: linkInput.value });
+  e.target.reset();
+  closePopup(popupAdd);
 }
 
 // открытие/закрытие окон
 function openPopup(popup) {
-  nameEditInput.value = profileName.textContent;
-  textInput.value = profileText.textContent;
-  nameAddInput.value = '';
-  linkInput.value = '';
   popup.classList.add('popup_opened');
 }
 
@@ -110,8 +98,8 @@ if (closeButtons.length > 0) {
   }
 };
 
-editButton.addEventListener('click', () => openPopup(popupEdit));
-addButton.addEventListener('click', () => openPopup(popupAdd));
+buttonOpenEditProfileForm.addEventListener('click', () => openPopup(popupEdit));
+buttonOpenAddCardForm.addEventListener('click', () => openPopup(popupAdd));
 
-editForm.addEventListener('submit', editFormSubmitHandler);
-addForm.addEventListener('submit', addFormSubmitHandler);
+formEditProfile.addEventListener('submit', editFormSubmitHandler);
+formAddCard.addEventListener('submit', addFormSubmitHandler);
