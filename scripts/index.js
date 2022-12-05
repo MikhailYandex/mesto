@@ -98,7 +98,12 @@ if (closeButtons.length > 0) {
   }
 };
 
-buttonOpenEditProfileForm.addEventListener('click', () => openPopup(popupEdit));
+buttonOpenEditProfileForm.addEventListener('click', function () {
+  nameEditInput.value = profileName.textContent;
+  textInput.value = profileText.textContent;
+  openPopup(popupEdit)
+});
+
 buttonOpenAddCardForm.addEventListener('click', () => openPopup(popupAdd));
 
 formEditProfile.addEventListener('submit', editFormSubmitHandler);
