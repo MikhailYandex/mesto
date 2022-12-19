@@ -47,10 +47,10 @@ const createCard = (card) => {
   });
 
   cardLink.addEventListener('click', () => {
-    image.src = card.link;
-    image.alt = card.name;
-    imageName.textContent = card.name;
-    openPopup(popupPhoto);
+    image.src = card.link
+    image.alt = card.name
+    imageName.textContent = card.name
+    openPopup(popupPhoto)
   })
 
   return newCard;
@@ -84,10 +84,13 @@ function addFormSubmitHandler(e) {
 // открытие/закрытие окон
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener("keydown", closePopupByEsc);
+
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener("keydown", closePopupByEsc);
 }
 
 // Закрытие попапов через все кнопки closeButtons
@@ -97,6 +100,21 @@ if (closeButtons.length > 0) {
     closeButton.addEventListener('click', () => closePopup(closeButton.closest('.popup')));
   }
 };
+
+// Закрытие попапа по всей области страницы
+document.addEventListener('click', (e) => {
+  const popup = e.target.closest('.popup');
+  if (e.target === popup) {
+    closePopup(popup);
+  }
+});
+
+// Закрытие попапа через кнопку Escape
+function closePopupByEsc (e) {
+  if (e.key === "Escape") {
+      closePopup(document.querySelector(".popup_opened"))
+  }
+}
 
 buttonOpenEditProfileForm.addEventListener('click', function () {
   nameEditInput.value = profileName.textContent;
@@ -108,3 +126,10 @@ buttonOpenAddCardForm.addEventListener('click', () => openPopup(popupAdd));
 
 formEditProfile.addEventListener('submit', editFormSubmitHandler);
 formAddCard.addEventListener('submit', addFormSubmitHandler);
+
+
+
+/*closeButtons.forEach((closeButton) => {
+  const popup = closeButton.closest('.popup');
+  closeButton.addEventListener('click', () => closePopup(popup));
+});*/   //еще так можно закрыть оверлэй (для себя)

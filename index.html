@@ -38,9 +38,13 @@
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form popup__form_edit">
-        <input type="text" class="popup__input popup__input_name" placeholder="Имя" required>
-        <input type="text" class="popup__input popup__input_text" placeholder="О себе" required>
+      <form class="popup__form popup__form_edit" novalidate>
+        <input type="text" class="popup__input popup__input_name" placeholder="Имя" required
+        minlength="2" maxlength="40" name="name">
+        <span class="name-error popup__input-error"></span>
+        <input type="text" class="popup__input popup__input_text" placeholder="О себе" required
+        minlength="2" maxlength="200" name="text">
+        <span class="text-error popup__input-error"></span>
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
     </div>
@@ -50,9 +54,13 @@
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_add">
-        <input type="text" class="popup__input popup__input_name" placeholder="Название" required>
-        <input type="text" class="popup__input popup__input_link" placeholder="Ссылка на картинку" required>
+      <form class="popup__form popup__form_add" novalidate>
+        <input type="text" class="popup__input popup__input_name" placeholder="Название" required
+        minlength="2" maxlength="30" name="place">
+        <span class="place-error popup__input-error"></span>
+        <input type="url" class="popup__input popup__input_link" placeholder="Ссылка на картинку"
+        required name="link">
+        <span class="link-error popup__input-error"></span>
         <button type="submit" class="popup__button">Создать</button>
       </form>
     </div>
@@ -80,6 +88,7 @@
   </template>
 
   <script src="./scripts/constants.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
