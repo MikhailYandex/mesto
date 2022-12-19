@@ -55,13 +55,13 @@ function isFormInvalid(inputList) {
 }
 
 //формируем список форм в документе и для каждой применяем список инпутов
-const setFormEventListeners = () => {
-  const formList = Array.from(document.querySelectorAll(selectors.formSelector));
-  formList.forEach((formElement) => {
-    setInputEventListeners(formElement);
+function enableValidation(selectors) {
+  const formList = document.querySelectorAll(selectors.formSelector);
+  formList.forEach(formElement => {
+    setInputEventListeners(formElement, selectors);
   })
-};
-setFormEventListeners();
+}
+enableValidation(selectors);
 
 //состояние кнопки, которое нужно менять: активна или неактивна
 function toggleButtonState(inputList, submitButton) {

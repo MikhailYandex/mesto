@@ -93,21 +93,19 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closePopupByEsc);
 }
 
-// Закрытие попапов через все кнопки closeButtons
-if (closeButtons.length > 0) {
-  for (let i = 0; i < closeButtons.length; i++) {
-    const closeButton = closeButtons[i];
-    closeButton.addEventListener('click', () => closePopup(closeButton.closest('.popup')));
-  }
-};
+// Закрытие попапов через все кнопки closeButtons и по оверлэю
+closeButtons.forEach((closeButton) =>{
+  const popup = closeButton.closest('.popup');
+  closeButton.addEventListener('click', () => closePopup(popup));
+  popup.addEventListener('click', outClosePopup);
+});
 
 // Закрытие попапа по всей области страницы
-document.addEventListener('click', (e) => {
-  const popup = e.target.closest('.popup');
-  if (e.target === popup) {
-    closePopup(popup);
+function outClosePopup(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
   }
-});
+}
 
 // Закрытие попапа через кнопку Escape
 function closePopupByEsc (e) {
@@ -122,14 +120,10 @@ buttonOpenEditProfileForm.addEventListener('click', function () {
   openPopup(popupEdit)
 });
 
-buttonOpenAddCardForm.addEventListener('click', () => openPopup(popupAdd));
+buttonOpenAddCardForm.addEventListener('click', function () {
+  openPopup(popupAdd)
+  disabledButtonState(popupAdd)
+});
 
 formEditProfile.addEventListener('submit', editFormSubmitHandler);
 formAddCard.addEventListener('submit', addFormSubmitHandler);
-
-
-
-/*closeButtons.forEach((closeButton) => {
-  const popup = closeButton.closest('.popup');
-  closeButton.addEventListener('click', () => closePopup(popup));
-});*/   //еще так можно закрыть оверлэй (для себя)

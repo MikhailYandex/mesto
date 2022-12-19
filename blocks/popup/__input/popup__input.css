@@ -11,10 +11,6 @@
   outline: none;
 }
 
-.popup__input:last-of-type {
-  margin-top: 13px;
-}
-
 @media (max-width: 630px) {
   .popup__input {
     width: 238px;
