@@ -123,6 +123,8 @@ buttonOpenEditProfileForm.addEventListener('click', function () {
 buttonOpenAddCardForm.addEventListener('click', function () {
   openPopup(popupAdd)
   disabledButtonState(popupAdd)
+  nameAddInput.value = '';
+  linkInput.value = '';
 });
 
 formEditProfile.addEventListener('submit', editFormSubmitHandler);

@@ -6,3 +6,4 @@ const initialCards = [
   {name: 'Езда на мотоцикле', link: './images/elements/motorbike.jpg'},
   {name: 'Маяк на причале', link: './images/elements/lighthouse.jpg'}
 ];
+

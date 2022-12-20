@@ -9,7 +9,7 @@ const selectors = {
 };
 
 //показываем текст ошибки
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, selectors) => {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
   inputElement.classList.add(selectors.inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -17,7 +17,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 }
 
 //скрываем текст ошибки
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, selectors) => {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
   inputElement.classList.remove(selectors.inputErrorClass);
   errorElement.textContent = '';
@@ -25,24 +25,24 @@ const hideInputError = (formElement, inputElement) => {
 }
 
 //проверяем валидность данных и вызываем hideError или showError
-const isValid = (formElement, inputElement) => {
+const isValid = (formElement, inputElement, selectors) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage)
+    showInputError(formElement, inputElement, inputElement.validationMessage, selectors)
   } else {
-    hideInputError(formElement, inputElement)
+    hideInputError(formElement, inputElement, selectors)
   }
 }
 
 //формируем список инпутов в форме и ставим на каждый слушатель
-const setInputEventListeners = (formElement) => {
+const setInputEventListeners = (formElement, selectors) => {
   const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
   const submitButton = formElement.querySelector(selectors.submitButtonSelector);
   toggleButtonState(inputList, submitButton);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, submitButton);
+      isValid(formElement, inputElement, selectors);
+      toggleButtonState(inputList, submitButton, selectors);
     });
   });
 }
