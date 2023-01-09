@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {name: 'Самолёт', link: './images/elements/airplane.jpg'},
   {name: 'Церковь', link: './images/elements/church.jpg'},
   {name: 'Птица', link: './images/elements/bird.jpg'},
