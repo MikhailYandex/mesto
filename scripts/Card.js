@@ -1,3 +1,5 @@
+import { popupImage, image, imageName, openPopup } from "./utils.js";
+
 export class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -46,7 +48,7 @@ export class Card {
   }
 
   getView() {
-    this._setData();
+    this._fillData();
     this._setEventListeners();
     return this._newCard;
   }
