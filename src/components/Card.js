@@ -1,7 +1,5 @@
-import { popupImage, image, imageName, openPopup } from "./utils.js";
-
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -10,6 +8,7 @@ export class Card {
     this._likeButton = this._newCard.querySelector(".element__like");
     this._deleteButton = this._newCard.querySelector(".element__delete-icon");
     this._cardImage = this._newCard.querySelector(".element__photo");
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -24,6 +23,7 @@ export class Card {
 
   _handleDelete() {
     this._newCard.remove();
+    this._newCard = null;
   }
 
   _handleLike() {
@@ -40,10 +40,7 @@ export class Card {
     });
 
     this._cardImage.addEventListener("click", () => {
-      image.src = this._link;
-      imageName.textContent = this._name;
-      image.alt = this._name;
-      openPopup(popupImage);
+      this._handleCardClick();
     });
   }
 
