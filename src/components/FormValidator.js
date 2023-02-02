@@ -1,39 +1,38 @@
 export default class FormValidator {
-  constructor(selectors, form) {
-    this._selectors = selectors;
-    this._formSelector = this._selectors.formSelector;
-    this._inputSelector = this._selectors.inputSelector;
-    this._submitButtonSelector = this._selectors.submitButtonSelector;
-    this._inactiveButtonClass = this._selectors.inactiveButtonClass;
-    this._inputErrorClass = this._selectors.inputErrorClass;
-    this._errorClass = this._selectors.errorClass;
+  constructor(validationConfig, form) {
+    this._validationConfig = validationConfig;
+    this._inputSelector = this._validationConfig.inputSelector;
+    this._submitButtonSelector = this._validationConfig.submitButtonSelector;
+    this._inactiveButtonClass = this._validationConfig.inactiveButtonClass;
+    this._inputErrorClass = this._validationConfig.inputErrorClass;
+    this._errorClass = this._validationConfig.errorClass;
     this._form = form;
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
   }
 
   //показываем текст ошибки
-  _showInputError(form, inputElement, errorMessage) {
-    const errorElement = form.querySelector(`.${inputElement.name}-error`);
+  _showInputError(inputElement, errorMessage) {
+    const errorElement = this._form.querySelector(`.${inputElement.name}-error`);
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
   }
 
   //скрываем текст ошибки
-  _hideInputError(form, inputElement) {
-    const errorElement = form.querySelector(`.${inputElement.name}-error`);
+  _hideInputError(inputElement) {
+    const errorElement = this._form.querySelector(`.${inputElement.name}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = "";
     errorElement.classList.remove(this._errorClass);
   }
 
   //проверяем валидность данных и вызываем hideError или showError
-  _isValid(form, inputElement) {
+  _isValid(inputElement) {
     if (!inputElement.validity.valid) {
-      this._showInputError(form, inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      this._hideInputError(form, inputElement);
+      this._hideInputError(inputElement);
     }
   }
 
@@ -42,7 +41,7 @@ export default class FormValidator {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
-        this._isValid(this._form, inputElement);
+        this._isValid(inputElement);
         this._toggleButtonState();
       });
     });
@@ -62,24 +61,27 @@ export default class FormValidator {
   //состояние кнопки, которое нужно менять: активна или неактивна
   _toggleButtonState() {
     if (this._isFormInvalid()) {
-      this._submitButton.setAttribute('disabled', true);
-      this._submitButton.classList.add(this._inactiveButtonClass);
+      this.disableButtonState();
     } else {
-      this._submitButton.removeAttribute('disabled');
-      this._submitButton.classList.remove(this._inactiveButtonClass);
+      this._enableButtonState();
     }
   }
 
-  disabledButtonState() {
-    this._submitButton.setAttribute('disabled', true);
+  disableButtonState() {
+    this._submitButton.disabled = true;
     this._submitButton.classList.add(this._inactiveButtonClass);
+  }
+
+  _enableButtonState() {
+    this._submitButton.disabled = false;
+    this._submitButton.classList.remove(this._inactiveButtonClass);
   }
 
   resetValidation() {
     this._inputList.forEach((inputElement) => {
-      this._hideInputError(this._form, inputElement, this._inputErrorClass, this._errorClass);
+      this._hideInputError(inputElement, this._inputErrorClass, this._errorClass);
     })
-    this._toggleButtonState(this._inactiveButtonClass);
+    this._toggleButtonState();
   }
 }
 

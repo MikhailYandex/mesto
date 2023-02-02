@@ -9,6 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
     publicPath: "",
+    assetModuleFilename: 'images/[hash][ext][query]'
   },
   mode: "development",
   devServer: {
@@ -27,6 +28,13 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
+      },
+      {
+        test: /\.html/,
+        type: "asset/resource",
+        generator: {
+        filename: 'static/[hash][ext][query]'
+        }
       },
       {
         test: /\.css$/,

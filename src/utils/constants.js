@@ -15,7 +15,7 @@ const initialCards = [
 ];
 
 // параметры валидации
-const selectors = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -34,7 +34,7 @@ const textInput = formEditProfile.querySelector('.popup__input_text');
 const formAddCard = document.querySelector('.popup__form_add');
 
 const cardContainer = document.querySelector(".elements");
-const templateSelector = "#element-template";
+const cardTemplateSelector = "#element-template";
 
-export { initialCards, selectors, buttonOpenEditProfileForm, buttonOpenAddCardForm,
-  formEditProfile, nameEditInput, textInput, formAddCard, cardContainer, templateSelector };
+export { initialCards, validationConfig, buttonOpenEditProfileForm, buttonOpenAddCardForm,
+  formEditProfile, nameEditInput, textInput, formAddCard, cardContainer, cardTemplateSelector };
