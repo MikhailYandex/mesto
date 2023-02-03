@@ -6,7 +6,7 @@ export default class Card {
     this._newCard = this._getTemplate();
     this._cardTitle = this._newCard.querySelector(".element__text");
     this._buttonLike = this._newCard.querySelector(".element__like");
-    this._deleteButton = this._newCard.querySelector(".element__delete-icon");
+    this._buttonDelete = this._newCard.querySelector(".element__delete-icon");
     this._cardImage = this._newCard.querySelector(".element__photo");
     this._handleCardClick = handleCardClick;
   }
@@ -31,7 +31,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._deleteButton.addEventListener("click", () => {
+    this._buttonDelete.addEventListener("click", () => {
       this._handleDelete();
     });
 

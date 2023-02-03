@@ -2,13 +2,13 @@ export default class FormValidator {
   constructor(validationConfig, form) {
     this._validationConfig = validationConfig;
     this._inputSelector = this._validationConfig.inputSelector;
-    this._submitButtonSelector = this._validationConfig.submitButtonSelector;
+    this._buttonSubmitSelector = this._validationConfig.submitButtonSelector;
     this._inactiveButtonClass = this._validationConfig.inactiveButtonClass;
     this._inputErrorClass = this._validationConfig.inputErrorClass;
     this._errorClass = this._validationConfig.errorClass;
     this._form = form;
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    this._submitButton = this._form.querySelector(this._submitButtonSelector);
+    this._buttonSubmit = this._form.querySelector(this._buttonSubmitSelector);
   }
 
   //показываем текст ошибки
@@ -68,13 +68,13 @@ export default class FormValidator {
   }
 
   disableButtonState() {
-    this._submitButton.disabled = true;
-    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._buttonSubmit.disabled = true;
+    this._buttonSubmit.classList.add(this._inactiveButtonClass);
   }
 
   _enableButtonState() {
-    this._submitButton.disabled = false;
-    this._submitButton.classList.remove(this._inactiveButtonClass);
+    this._buttonSubmit.disabled = false;
+    this._buttonSubmit.classList.remove(this._inactiveButtonClass);
   }
 
   resetValidation() {

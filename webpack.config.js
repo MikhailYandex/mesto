@@ -30,13 +30,6 @@ module.exports = {
         type: "asset/resource",
       },
       {
-        test: /\.html/,
-        type: "asset/resource",
-        generator: {
-        filename: 'static/[hash][ext][query]'
-        }
-      },
-      {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
