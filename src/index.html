@@ -16,7 +16,9 @@
   <main>
     <section class="profile">
       <div class="profile__box">
-        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар Жак-Ив-Кусто" class="profile__avatar">
+        <div class="profile__avatar-container">
+          <img src="#" alt="Аватар Жак-Ив-Кусто" class="profile__avatar">
+        </div>
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" class="profile__edit-button"></button>
@@ -74,13 +76,39 @@
     </div>
   </div>
 
+  <div class="popup popup_type_confirm">
+    <div class="popup__container-confirm">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title-confirm">Вы уверены?</h2>
+      <form class="popup__form popup__form_confirm">
+        <button type="submit" class="popup__button">Да</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_avatar">
+    <div class="popup__container-avatar">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title-avatar">Обновить аватар</h2>
+      <form class="popup__form popup__form_avatar" novalidate>
+        <input type="url" class="popup__input popup__input_avatar" placeholder="Ссылка на картинку"
+        required name="avatar">
+        <span class="avatar-error popup__input-error"></span>
+        <button type="submit" class="popup__button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <template id="element-template">
     <article class="element">
       <button class="element__delete-icon" type="button"></button>
       <img src="#" class="element__photo">
       <div class="element__group">
         <h2 class="element__text"></h2>
-        <button type="button" class="element__like"></button>
+        <div class="element__like-block">
+          <button type="button" class="element__like"></button>
+          <p class="element__like-counter"></p>
+        </div>
       </div>
     </article>
   </template>
