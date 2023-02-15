@@ -21,14 +21,13 @@ const api = new Api({
 });
 
 //отрисовка данных карточек и описания профиля с сервера
-let userId;
 Promise.all([api.getUserInfo(), api.getCards()]).then(
   ([userData, cardsData]) => {
     userInfo.setUserInfo(userData);
-    userId = userData._id;
+    userInfo.getUserId(userData._id);
     cardsSection.renderItems(cardsData);
-  }
-);
+  })
+  .catch(err => console.log(err));
 
 const formProfileValidator = new FormValidator(validationConfig, formEditProfile);
 formProfileValidator.enableValidation();
@@ -52,17 +51,19 @@ const popupConfirmation = new PopupConfirmation(".popup_type_confirm");
 function createCards(data) {
   const card = new Card ({
     data: data,
-    userId: userId,
+    userId: userInfo.getUserId(data._id),
     handleCardClick: () => { popupWithImage.open(data) },
     handleLikeClick: () => {
       if (card.isLiked()) {
         api.removeLike(data._id).then((data) => {
           card.toggleLikes(data.likes);
         })
+        .catch(err => console.log(err));
       } else {
         api.addLike(data._id).then((data) => {
           card.toggleLikes(data.likes);
         })
+        .catch(err => console.log(err));
       }
     },
     handleDeleteClick: () => {
@@ -71,6 +72,7 @@ function createCards(data) {
           card.removeCard();
           popupConfirmation.close();
         })
+        .catch(err => console.log(err));
       })
     }
   }, cardTemplateSelector
@@ -90,6 +92,7 @@ const popupEdit = new PopupWithForm(".popup_type_edit", (data) => {
     userInfo.setUserInfo(data);
     popupEdit.close();
   })
+  .catch(err => console.log(err))
   .finally(() => {
     popupEdit.renderLoading(false);
   });
@@ -101,6 +104,7 @@ const popupAdd = new PopupWithForm ('.popup_type_add', (data) => {
     cardsSection.addItem(createCards(data));
     popupAdd.close();
   })
+  .catch(err => console.log(err))
   .finally(() => {
     popupAdd.renderLoading(false);
   });
@@ -112,6 +116,7 @@ const popupAvatarEdit = new PopupWithForm (".popup_type_avatar", ({avatar}) => {
     userInfo.setUserInfo(data);
     popupAvatarEdit.close();
   })
+  .catch(err => console.log(err))
   .finally(() => {
     popupAvatarEdit.renderLoading(false);
   })
@@ -125,9 +130,7 @@ popupAvatarEdit.setEventListeners();
 
 buttonOpenEditProfileForm.addEventListener('click', () => {
   popupEdit.open();
-  const userData = userInfo.getUserInfo();
-  nameEditInput.value = userData.name;
-  textInput.value = userData.about;
+  popupEdit.setInputValues(userInfo.getUserInfo());
   formProfileValidator.resetValidation();
 });
 
