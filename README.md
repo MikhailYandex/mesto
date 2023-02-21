@@ -10,7 +10,7 @@
 [Ссылка на Github Pages](https://mikhailyandex.github.io/mesto/)
 
 Наглядно c функционалом проекта **Mesto** можно познакомиться в видео:
-[1d0c255a-e50f-4aba-a25a-e93a7c905458.webm](https://user-images.githubusercontent.com/114576286/220300700-a3df9fc2-8514-4b12-ba7f-fa2beead5e95.webm)
+https://user-images.githubusercontent.com/114576286/220300700-a3df9fc2-8514-4b12-ba7f-fa2beead5e95.webm
 
 ### Используемые технологии
 * HTML5
