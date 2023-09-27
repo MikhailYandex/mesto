@@ -13,7 +13,7 @@
 
 https://user-images.githubusercontent.com/114576286/220302880-7304298c-bfa5-4d79-8704-ea8657daffeb.mp4
 
-### Используемые технологии
+### Используемые технологии:
 * HTML5
 * CSS3
 * Javascript
